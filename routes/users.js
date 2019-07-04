@@ -1,9 +1,26 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-module.exports = router;
+
+router.get('/',(req,res)=>{
+    res.render('user.ejs')
+})
+
+router.post('/', (req,res)=>{
+    var uid = req.body.uid;
+    var pass = req.body.pass;
+    if(uid=='user' && pass=='pass'){
+        res.render('user.ejs')
+    }
+    
+})
+
+module.exports =router;
+
+
